@@ -1,0 +1,135 @@
+#include <stdio.h>
+
+/* run this program using the console pauser or add your own getch, system("pause") or input loop */
+int IsPrime(int N);
+long linear_search(long *pointer, long n, long find);
+int BinarySearching(int arr[], int max, int element);
+
+int main(int argc, char** argv) {
+	int task_num;
+	printf("Enter the task number: \n");
+	scanf("%d", &task_num);
+    
+	if(task_num==1)
+	{
+		int i_val = 7;
+		int* i_ptr = &i_val;
+	}
+	if(task_num==2)
+	{
+		char symbol = 'W';
+		char *ptr = &symbol;
+	}
+	if(task_num==3)
+	{
+		char *s = "hello world";
+	}
+	if(task_num==4)
+	{
+		int N;
+	    int i;	
+	    int count=0;
+	
+	
+	
+    	printf("Vvedite chislo: \n");
+		scanf("%d", &N);
+		    if(IsPrime(N)){
+			    printf("Chislo prostoe. \n");			    
+		    }			    
+	}
+	if(task_num==5)
+	{
+		long array[100], search, i, n, position;
+    	printf("Input number of elements in array\n");
+	    scanf("%ld", &n);
+	
+	    printf("Input %d numbers\n", n);
+	
+	    for(i=0;i<n;i++)
+	        scanf("%ld", &array[i]);
+	    
+	    printf("Input number to search\n");
+	    scanf("%ld", &search);
+	
+	    position=linear_search(array, n, search);
+	
+	    if(position==-1)
+	        printf("%d is not present in array.\n", search);
+	    else
+	        printf("%d is present at location %d.\n", search, position+1);
+	    
+	}
+	if (task_num==6)
+	{
+		int count, element, limit, arr[50], position;
+        printf("Enter the Limit of Elements in Array:\t");
+        scanf("%d", &limit);
+        printf("Enter %d Elements in Array: \n", limit);
+        for(count = 0; count < limit; count++)
+        {
+            scanf("%d", &arr[count]);
+        }
+        printf("Enter Element To Search:\t");
+        scanf("%d", &element);
+        position = BinarySearching(arr, limit, element);
+        if(position == -1) 
+        {
+            printf("Element %d Not Found\n", element);
+        }
+        else
+        {
+            printf("Element %d Found at Position %d\n", element, position + 1);
+        }
+	}
+	if(task_num==7)
+	{
+		int  count = 10, *temp, sum = 0;
+        temp = &count;
+	    *temp = 20;
+        temp = &sum;
+	    *temp = count;
+        printf("count = %d, *temp = %d, sum = %d\n", count, *temp, sum);
+
+	}
+	return 0;
+}
+
+int IsPrime(int N)
+{
+    for (int i = 2; i < N; i++)
+    {
+        if (N % i == 0 && i != N)
+            return 0;
+    }
+    return 1;
+}
+
+
+long linear_search(long *pointer, long n, long find)
+{
+   long i;
+ 
+   for (i = 0; i < n; i++) {
+        if (*(pointer+i) == find)
+            return i;
+   }
+ 
+   return -1;
+}
+
+int BinarySearching(int arr[], int max, int element)
+{
+      int low = 0, high = max - 1, middle;
+      while(low <= high)
+      {
+            middle = (low + high) / 2;
+            if(element > arr[middle])
+                  low = middle + 1; 
+            else if(element < arr[middle])
+                  high = middle - 1; 
+            else
+                  return middle;
+      }
+      return -1;
+}
